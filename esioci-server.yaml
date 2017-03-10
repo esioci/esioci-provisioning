@@ -1,0 +1,16 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Add download Erlang Solutions repository deb
+      get_url:
+        url: https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+        dest: /tmp/erlang-solutions.deb
+    - name: Install Erlang Solutions package
+      apt:
+        deb: /tmp/erlang-solutions.deb
+    - name: Install elixir
+      apt:
+        update_cache: yes
+        name: elixir=1.4.1-1
+        state: present
